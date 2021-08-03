@@ -2,6 +2,7 @@ import { compare } from "bcryptjs";
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
 import { sign } from "jsonwebtoken";
+import { classToPlain } from "class-transformer";
 
 interface ILoginRequest {
   email: string;
@@ -29,7 +30,7 @@ class AuthenticationService {
       expiresIn: "1d",
     });
 
-    return token;
+    return { ...classToPlain(user), token };
   }
 }
 
