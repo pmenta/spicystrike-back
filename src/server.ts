@@ -22,4 +22,4 @@ app.use(
     });
   }
 );
-app.listen(3001, () => console.log("Server is running"));
+app.listen(3000, () => console.log("Server is running"));

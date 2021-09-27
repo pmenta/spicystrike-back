@@ -4,6 +4,10 @@ import { UsersRepository } from "../repositories/UsersRepository";
 class DeleteUserService {
   async execute(id: string) {
     const userRepository = await getCustomRepository(UsersRepository);
+    
+    if (!id) {
+      throw new Error("ID is required");
+    }
 
     const user = await userRepository.findOne(id);
 
