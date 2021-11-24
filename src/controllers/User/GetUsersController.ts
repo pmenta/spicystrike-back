@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
-import { GetUsersService } from "../services/GetUsersService";
+import { Request, Response } from 'express';
+import { classToPlain } from 'class-transformer';
+import { GetUsersService } from '../../services/User/GetUsersService';
 
 class GetUsersController {
   async handle(request: Request, response: Response) {
@@ -7,7 +8,7 @@ class GetUsersController {
 
     const users = await getUsersService.execute();
 
-    return response.json(users);
+    return response.json(classToPlain(users));
   }
 }
 

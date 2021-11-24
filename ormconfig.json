@@ -1,6 +1,10 @@
 {
-  "type": "sqlite",
-  "database": "src/database/database.sqlite",
+  "type": "postgres",
+  "username": "root",
+  "password": "root",
+  "host": "localhost",
+  "port": 5432,
+  "database": "spicy",
   "migrations": ["src/database/migrations/*.ts"],
   "entities": ["src/entities/*.ts"],
   "cli": {
