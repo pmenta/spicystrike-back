@@ -6,33 +6,26 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  Generated,
 } from 'typeorm';
-import { Exclude } from 'class-transformer';
 
-import { Team } from './Team';
+import { User } from './User';
 
-@Entity('users')
-class User {
+@Entity('teams')
+class Team {
   @PrimaryColumn()
+  @Generated('uuid')
   readonly id: string;
 
   @Column()
     name: string;
 
-  @Exclude()
   @Column()
-    email: string;
+  readonly founder_id: string;
 
-  @Column()
-    team_id: string;
-
-  @JoinColumn({ name: 'team_id' })
-  @ManyToOne(() => Team)
-    team: Team;
-
-  @Exclude()
-  @Column()
-    password: string;
+  @JoinColumn({ name: 'founder_id' })
+  @ManyToOne(() => User)
+    founder: User;
 
   @CreateDateColumn()
     created_at: Date;
@@ -41,4 +34,4 @@ class User {
     updated_at: Date;
 }
 
-export { User };
+export { Team };

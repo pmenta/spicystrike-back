@@ -1,7 +1,7 @@
-import { getCustomRepository } from "typeorm";
-import { UsersRepository } from "../repositories/UsersRepository";
-import { validateEmail } from "../utils/validateEmail";
-import { hash } from "bcryptjs";
+import { getCustomRepository } from 'typeorm';
+import { hash } from 'bcryptjs';
+import { UsersRepository } from '../../repositories/UsersRepository';
+import { validateEmail } from '../../utils/validateEmail';
 
 interface ICreateUserRequest {
   name: string;
@@ -14,22 +14,22 @@ class CreateUserService {
     const usersRepository = await getCustomRepository(UsersRepository);
 
     if (!name) {
-      throw new Error("Name is required");
+      throw new Error('O nome é necessário');
     }
 
     if (!email) {
-      throw new Error("Email is required");
+      throw new Error('O e-mail é necessário');
     }
 
     if (!password) {
-      throw new Error("Password is required");
+      throw new Error('A senha é necessária');
     }
 
     const encryptedPassword = await hash(password, 8);
     const emailIsValid = validateEmail(email);
 
     if (!emailIsValid) {
-      throw new Error("Invalid e-mail");
+      throw new Error('E-mail inválido');
     }
 
     const user = usersRepository.create({
