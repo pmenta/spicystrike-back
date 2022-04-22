@@ -27,5 +27,5 @@ MyTeams is a team management plataform where we can create users, teams and ingr
 - Run `yarn dev` to initalizate the app.
 
 ---
-<p align="center">Feito com 💜 por [João Martins](https://github.com/pmenta)</p>
+<p align="center">Feito com 💜 por João Martins</p>
 
