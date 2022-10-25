@@ -5,14 +5,14 @@ import { UpdateUserService } from '../../services/User/UpdateUserService';
 class UpdateUserController {
   async handle(request: Request, response: Response) {
     const {
-      name, email, password, team_id,
+      name, password,
     } = request.body;
     const id = request.userId;
 
     const updateUserService = new UpdateUserService();
 
     const user = await updateUserService.execute({
-      id, name, email, password, team_id,
+      id, name, password,
     });
 
     return response.json(classToPlain(user));

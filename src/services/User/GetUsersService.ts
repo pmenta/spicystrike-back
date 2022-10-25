@@ -5,7 +5,7 @@ class GetUsersService {
   async execute() {
     const usersRepository = await getCustomRepository(UsersRepository);
 
-    const users = await usersRepository.find({ relations: ['team'] });
+    const users = await usersRepository.find();
 
     return users;
   }

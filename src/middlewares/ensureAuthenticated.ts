@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
+import { NextFunction, Request, Response } from 'express';
+import { verify } from 'jsonwebtoken';
 
 interface IPayload {
   sub: string;
@@ -8,7 +8,7 @@ interface IPayload {
 export function ensureAuthenticated(
   request: Request,
   response: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   // Receber token
   const token = request.headers.authorization;
@@ -22,7 +22,7 @@ export function ensureAuthenticated(
   try {
     const { sub } = verify(
       token.substring(7),
-      "f1bc4378de8f3380f52892b8475e542c"
+      'f1bc4378de8f3380f52892b8475e542c',
     ) as IPayload;
 
     // Inserir userId na request

@@ -1,40 +1,34 @@
 import { getCustomRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 import { UsersRepository } from '../../repositories/UsersRepository';
-import { validateEmail } from '../../utils/validateEmail';
 
 interface ICreateUserRequest {
   name: string;
-  email: string;
   password: string;
 }
 
 class CreateUserService {
-  async execute({ name, email, password }: ICreateUserRequest) {
+  async execute({ name, password }: ICreateUserRequest) {
     const usersRepository = await getCustomRepository(UsersRepository);
 
     if (!name) {
       throw new Error('O nome é necessário');
     }
 
-    if (!email) {
-      throw new Error('O e-mail é necessário');
-    }
-
     if (!password) {
       throw new Error('A senha é necessária');
     }
 
-    const encryptedPassword = await hash(password, 8);
-    const emailIsValid = validateEmail(email);
+    const userAlreadyExists = await usersRepository.findOne({ name });
 
-    if (!emailIsValid) {
-      throw new Error('E-mail inválido');
+    if (userAlreadyExists) {
+      throw new Error('Já existe um usuário com esse nome');
     }
+
+    const encryptedPassword = await hash(password, 8);
 
     const user = usersRepository.create({
       name,
-      email,
       password: encryptedPassword,
     });
 

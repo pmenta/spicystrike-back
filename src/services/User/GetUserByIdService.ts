@@ -5,7 +5,7 @@ class GetUserByIdService {
   async execute(id: string) {
     const usersRepository = await getCustomRepository(UsersRepository);
 
-    const user = await usersRepository.findOne({ where: { id }, relations: ['team'] });
+    const user = await usersRepository.findOne({ where: { id } });
 
     return user;
   }

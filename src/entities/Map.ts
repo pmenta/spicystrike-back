@@ -4,28 +4,15 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
-  Generated,
 } from 'typeorm';
 
-import { User } from './User';
-
-@Entity('teams')
-class Team {
+@Entity('maps')
+class Map {
   @PrimaryColumn()
-  @Generated('uuid')
   readonly id: string;
 
   @Column()
     name: string;
-
-  @Column()
-  readonly founder_id: string;
-
-  @JoinColumn({ name: 'founder_id' })
-  @ManyToOne(() => User)
-    founder: User;
 
   @CreateDateColumn()
     created_at: Date;
@@ -34,4 +21,4 @@ class Team {
     updated_at: Date;
 }
 
-export { Team };
+export { Map };

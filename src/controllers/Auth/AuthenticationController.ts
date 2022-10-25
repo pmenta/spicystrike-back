@@ -3,11 +3,11 @@ import { AuthenticationService } from '../../services/Auth/AuthenticationService
 
 class AuthenticationController {
   async handle(request: Request, response: Response) {
-    const { email, password } = request.body;
+    const { name, password } = request.body;
 
     const authenticationService = new AuthenticationService();
 
-    const user = await authenticationService.execute({ email, password });
+    const user = await authenticationService.execute({ name, password });
 
     return response.json({ user });
   }
