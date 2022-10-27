@@ -16,6 +16,11 @@ interface IReady {
   ready: boolean
 }
 
+interface IServer {
+  ip: string
+  password: string
+}
+
 @Entity('lobbys')
 class Lobby {
   @PrimaryColumn()
@@ -59,6 +64,12 @@ class Lobby {
     nullable: false,
   })
     ready: IReady[];
+
+  @Column({
+    type: 'jsonb',
+    nullable: true,
+  })
+    server: IServer;
 
   @Column()
     map?: string;
