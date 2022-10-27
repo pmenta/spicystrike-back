@@ -8,4 +8,3 @@ declare namespace Express {
     mapId: string;
   }
 }
-}
