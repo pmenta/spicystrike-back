@@ -7,6 +7,11 @@ module.exports = {
   database: process.env.DB,
   migrations: ['src/database/migrations/*.ts'],
   entities: ['src/entities/*.ts'],
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
   cli: {
     migrationsDir: 'src/database/migrations',
     entitiesDir: 'src/entities',
