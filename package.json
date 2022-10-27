@@ -1,10 +1,12 @@
 {
   "name": "spicy",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
+    "start": "node dist/server.js",
     "dev": "ts-node-dev src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "postinstall": "tsc"
   },
   "license": "MIT",
   "dependencies": {
@@ -15,6 +17,7 @@
     "class-transformer": "^0.4.0",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
@@ -23,6 +26,7 @@
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "socket.io": "^4.5.2",
+    "ts-node": "^10.9.1",
     "typeorm": "^0.2.41",
     "uuid": "^8.3.2"
   },
