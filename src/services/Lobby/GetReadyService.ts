@@ -5,8 +5,8 @@ import { LobbysRepository } from '../../repositories/LobbysRepository';
 import { UsersRepository } from '../../repositories/UsersRepository';
 
 interface IGetReadyRequest {
-  user_id: string,
-  lobby_id: string,
+  user_id: string;
+  lobby_id: string;
 }
 
 class GetReadyService {
@@ -22,7 +22,9 @@ class GetReadyService {
       throw new Error('O ID do lobby não foi informado');
     }
 
-    const lobby = await lobbyRepository.findOne(lobby_id, { relations: ['creator'] });
+    const lobby = await lobbyRepository.findOne(lobby_id, {
+      relations: ['creator'],
+    });
 
     if (!lobby) {
       throw new Error('Lobby não encontrado');
@@ -34,7 +36,7 @@ class GetReadyService {
       throw new Error('Usuário não encontrado');
     }
 
-    const newLobby = {e
+    const newLobby = {
       ...lobby,
       ready: [...lobby.ready, { id: user_id, ready: true }],
     };

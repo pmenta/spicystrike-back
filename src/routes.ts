@@ -21,6 +21,12 @@ import { GetLobbyByIdController } from './controllers/Lobby/GetLobbyByIdControll
 import { EnterInX1LobbyController } from './controllers/Lobby/EnterX1LobbyController';
 import { GetReadyController } from './controllers/Lobby/GetReadyController';
 
+import { VetoMapController } from './controllers/Vetoes/VetoMapController';
+
+import { GetServersController } from './controllers/Servers/GetServersController';
+import { CreateServerController } from './controllers/Servers/CreateServerController';
+import { OpenServerController } from './controllers/Servers/OpenServerController';
+
 import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 
 const router = Router();
@@ -44,6 +50,12 @@ const getLobbyByIdController = new GetLobbyByIdController();
 const enterInX1LobbyController = new EnterInX1LobbyController();
 const getReadyController = new GetReadyController();
 
+const vetoMapController = new VetoMapController();
+
+const getServersController = new GetServersController();
+const createServerController = new CreateServerController();
+const openServerController = new OpenServerController();
+
 router.post('/login', authenticationController.handle);
 
 router.get('/users', ensureAuthenticated, getUsersController.handle);
@@ -62,5 +74,10 @@ router.get('/lobbys/:id', ensureAuthenticated, getLobbyByIdController.handle);
 router.post('/lobbys', ensureAuthenticated, createLobbyController.handle);
 router.post('/lobbys/:id', ensureAuthenticated, enterInX1LobbyController.handle);
 router.post('/lobbys/ready/:id', ensureAuthenticated, getReadyController.handle);
+router.post('/lobbys/veto/:id', ensureAuthenticated, vetoMapController.handle);
+
+router.post('/servers', ensureAuthenticated, createServerController.handle);
+router.get('/servers', ensureAuthenticated, getServersController.handle);
+router.post('/servers/open', ensureAuthenticated, openServerController.handle);
 
 export { router };

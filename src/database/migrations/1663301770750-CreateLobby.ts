@@ -43,6 +43,11 @@ export class CreateLobby1663301770750 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'server',
+            type: 'jsonb',
+            isNullable: true,
+          },
+          {
             name: 'created_by',
             type: 'uuid',
           },
