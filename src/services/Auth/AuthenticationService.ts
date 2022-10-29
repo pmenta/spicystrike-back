@@ -26,7 +26,7 @@ class AuthenticationService {
     }
 
     const user = await userRepository.findOne({ name });
-    
+
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
