@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { DeleteUserService } from '../../services/User/DeleteUserService';
+import { Request, Response } from "express";
+import { DeleteUserService } from "../../services/User/DeleteUserService";
 
 class DeleteUserController {
   async handle(request: Request, response: Response) {
@@ -7,9 +7,13 @@ class DeleteUserController {
 
     const deleteUserService = new DeleteUserService();
 
-    await deleteUserService.execute(id);
+    const deleted = await deleteUserService.execute(id);
 
-    return response.json({ message: 'User deleted' });
+    if (deleted.isLeft()) {
+      return response.status(deleted.value._statusCode).json({ error: deleted.value._message });
+    }
+
+    return response.json({ message: "User deleted" });
   }
 }
 
