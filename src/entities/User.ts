@@ -7,6 +7,11 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
+interface IPlainUser {
+  name: string;
+  id: string;
+}
+
 @Entity('users')
 class User {
   @PrimaryColumn()
@@ -26,4 +31,4 @@ class User {
     updated_at: Date;
 }
 
-export { User };
+export { User, IPlainUser };
