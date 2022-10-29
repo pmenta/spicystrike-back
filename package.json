@@ -4,13 +4,12 @@
   "main": "src/server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "postinstall": "tsc"
   },
   "license": "MIT",
   "dependencies": {
-    "@breejs/later": "^4.1.0",
     "@types/socket.io": "^3.0.2",
     "@types/uuid": "^8.3.1",
     "bcryptjs": "^2.4.3",
@@ -21,7 +20,7 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
-    "node-cron": "^3.0.2",
+    "node-schedule": "^2.1.0",
     "node-ssh": "^13.0.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
@@ -36,13 +35,14 @@
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/node": "^16.11.10",
-    "@types/node-cron": "^3.0.4",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.3.5"
   }
 }
