@@ -1,6 +1,5 @@
-import { classToPlain } from 'class-transformer';
 import { Request, Response } from 'express';
-import { CreateUserService } from '../../services/User/CreateUserService';
+import { CreateUserService } from '@/services/User/CreateUserService';
 
 class CreateUserController {
   async handle(request: Request, response: Response) {
@@ -10,7 +9,11 @@ class CreateUserController {
 
     const user = await createUserService.execute({ name, password });
 
-    return response.json(classToPlain(user));
+    if(user.isLeft()) {
+      return response.status(user.value._statusCode).json({error: user.value.message});
+    }
+
+    return response.json({ ...user.value });
   }
 }
 

@@ -24,7 +24,7 @@ afterEach(() => {
   return conn.close();
 });
 
-describe('Auth', () => {
+describe('Auth service', () => {
   const authenticationService = new AuthenticationService()
   const createUserService = new CreateUserService()
 
@@ -34,7 +34,7 @@ describe('Auth', () => {
       password: '123456',
     })
 
-    const auth = await authenticationService.execute({ name: user.name, password: '123456' })
+    const auth = await authenticationService.execute({ name: user.value.name, password: '123456' })
 
     expect(auth.value).toHaveProperty('token')
     expect(auth.value).toHaveProperty('id')
@@ -47,10 +47,11 @@ describe('Auth', () => {
       password: '123456',
     })
 
-    const auth = await authenticationService.execute({ name: user.name, password: '123' })
+    const auth = await authenticationService.execute({ name: user.value.name, password: '123' })
 
     expect(auth.isLeft()).toBeTruthy()
     if (auth.isLeft()) {
+      expect(auth.value).toBeInstanceOf(Error);
       expect(auth.value._message).toEqual('Nome ou senha inválidos')
     }
   })
