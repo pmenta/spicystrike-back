@@ -22,7 +22,7 @@ export function ensureAuthenticated(
   try {
     const { sub } = verify(
       token.substring(7),
-      'f1bc4378de8f3380f52892b8475e542c',
+      process.env.SECRET,
     ) as IPayload;
 
     // Inserir userId na request
