@@ -13,7 +13,7 @@ class AuthenticationController {
       return response.status(user.value._statusCode).json({ error: user.value._message });
     }
 
-    return response.json({ user });
+    return response.json({ ...user.value });
   }
 }
 
