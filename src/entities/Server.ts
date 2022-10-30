@@ -1,36 +1,36 @@
 import {
   Column,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-} from 'typeorm';
+} from "typeorm";
 
-@Entity('servers')
+@Entity("servers")
 class Server {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column()
-    hostname: string;
+  hostname: string;
 
   @Column()
-    key_filename: string;
+  key_filename: string;
 
   @Column()
-    ip: string;
+  ip: string;
 
   @Column()
-    password: string;
+  password: string;
 
-  @Column()
-    status: number; // 0 Livre || 1 Em jogo
+  @Column({ default: 0 })
+  status: number; // 0 Livre || 1 Em jogo
 
   @CreateDateColumn()
-    created_at: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-    updated_at: Date;
+  updated_at: Date;
 }
 
 export { Server };
