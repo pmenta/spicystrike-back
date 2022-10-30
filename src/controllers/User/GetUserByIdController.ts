@@ -1,6 +1,5 @@
-import { Request, Response } from 'express';
-import { classToPlain } from 'class-transformer';
-import { GetUserByIdService } from '../../services/User/GetUserByIdService';
+import { Request, Response } from "express";
+import { GetUserByIdService } from "@/services/User/GetUserByIdService";
 
 class GetUserByIdController {
   async handle(request: Request, response: Response) {
@@ -9,7 +8,13 @@ class GetUserByIdController {
 
     const user = await getUserByIdService.execute(id);
 
-    return response.json(classToPlain(user));
+    if (user.isLeft()) {
+      return response
+        .status(user.value._statusCode)
+        .json({ error: user.value._message });
+    }
+
+    return response.json({ ...user.value });
   }
 }
 
