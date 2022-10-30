@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import { ServersRepository } from '../../repositories/ServersRepository';
+import { ServersRepository } from '@/repositories/ServersRepository';
 
 class GetServersService {
   async execute() {

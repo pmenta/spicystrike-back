@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetServersService } from '../../services/Server/GetServersService';
+import { GetServersService } from '@/services/Server/GetServersService';
 
 class GetServersController {
   async handle(request: Request, response: Response) {
